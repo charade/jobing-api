@@ -9,13 +9,13 @@ const PORT = process.env.PORT || 3003;
 
 const app = express();
 console.log(cors())
-// app.use(cors())
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', "GET, POST, PATCH, DELETE, OPTIONS");
-    res.header('Access-Control-Allow-Headers', 'Authorization, Access-Control-Allow-Headers')
-    next();
-});
+app.use(cors());
+// app.use((req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Methods', "GET, POST, PATCH, DELETE, OPTIONS");
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     res.setHeader('Access-Control-Allow-Headers', 'Authorization, Access-Control-Allow-Headers')
+//     next();
+// });
 
 app.use(express.urlencoded());
 app.use(express.json());

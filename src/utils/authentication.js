@@ -4,29 +4,18 @@ const { UnauthorizedError } = require('../handlers/exceptions');
 
 module.exports =  {
     verify : async(request, response, next) =>{
-        console.log(request.headers)
         try{
-            // const { headers } = request;
-            // const token = headers.authorization.split(' ')[1];
-            // const user = await jwt.verify(token, process.env.SECRET);
-            // if(Date.now() > user.expiresIn){
-            //     next(new UnauthorizedError("jeton d'authentification expiré"));
-            //     return;
-            // }
-            // request.id = user.id;
-            // console.log(headers)
-            // next();
+            const { headers } = request;
+            const token = headers.authorization.split(' ')[1];
+            const user = await jwt.verify(token, process.env.SECRET);
+            if(Date.now() > user.expiresIn){
+                next(new UnauthorizedError("jeton d'authentification expiré"));
+                return;
+            }
+            request.id = user.id;
+            next();
         }
         catch{
-            console.log("error")
-            console.log("error")
-            console.log("error")
-            console.log("error")
-            console.log("error")
-            console.log("error")
-            console.log("error")
-            console.log("error")
-            console.log("error")
             next(new UnauthorizedError('invalid authentication token'));
         }
     },

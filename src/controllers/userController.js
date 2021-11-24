@@ -1,4 +1,4 @@
-const { users } = require('../models');
+const { users, timeline, jobs } = require('../models');
 const { password } = require('../utils');
 
 const {
@@ -39,9 +39,18 @@ module.exports = {
     getUser : async(id) => {
         const user = await users.findOne({
             where : {id},
+            attributes : {exclude : "password"},
+            include : [{
+                as : "timeline",
+                model : timeline,
+            },
+            {
+                as: "jobs",
+                model: jobs
+            }
+        ]
         });
-        user.getTimeline();
-        user.getJobs();
+
         console.log(user);
     },
     /******************************************************************************* */

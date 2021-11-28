@@ -20,8 +20,11 @@ module.exports = (sequelize, DataTypes) => {
     companyContactName : DataTypes.STRING(80),
     contact : DataTypes.STRING(80),
     offer : DataTypes.STRING(100),
-    description: DataTypes.STRING,
-    offerLink : DataTypes.STRING,
+    offerLink : DataTypes.STRING(100),
+    date : {
+      type : DataTypes.DATE,
+      defaultValue : new Date()
+    },
     status : {
       type :DataTypes.BOOLEAN,
       defaultValue : false

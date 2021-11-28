@@ -50,8 +50,7 @@ module.exports = {
             }
         ]
         });
-
-        console.log(user);
+        return user;
     },
     /******************************************************************************* */
     update: async(data,id) => {

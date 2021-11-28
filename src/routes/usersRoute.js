@@ -34,7 +34,8 @@ router.post('/login', async (req, res, next) => {
 /******************** Get user infos **************************** */
 router.get('/auth', async(req, res, next) => {
     const { id } = req;
-    console.log(await userController.getUser(id));
+    const user = await userController.getUser(id);
+    res.status(200).json(user)
 });
 /*************************** Update user infos ****************** */
 router.patch('/auth/update', async(req, res, next) => {

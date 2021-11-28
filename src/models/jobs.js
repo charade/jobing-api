@@ -7,8 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   class jobs extends Model {
     static associate(models) {
       this.belongsTo(models.users, {foreignKey : 'userId'});
-      this.hasMany(models.contacts, { foreignKey : 'jobId', as : "contacts" })
-    }
+    };
   };
   jobs.init({
     id : {
@@ -17,11 +16,17 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue : DataTypes.UUIDV4,
     },
     company: DataTypes.STRING(100),
+    adress : DataTypes.STRING(100),
     companyContactName : DataTypes.STRING(80),
+    contact : DataTypes.STRING(80),
     offer : DataTypes.STRING(100),
     description: DataTypes.STRING,
+    offerLink : DataTypes.STRING,
+    status : {
+      type :DataTypes.BOOLEAN,
+      defaultValue : false
+    },
     userId : DataTypes.UUID,
-    status : DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'jobs',

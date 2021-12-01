@@ -1,10 +1,6 @@
 const router = require('express').Router();
 const job = require('../controllers/jobsController');
 
-//get all offers
-router.get('/auth',(req, res, next) => {
-    //get connected user jobs
-})
 //add a new offer
 router.post('/auth', async(req,res,next) => {
     const { id } = req;

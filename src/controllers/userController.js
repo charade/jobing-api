@@ -37,7 +37,7 @@ module.exports = {
     },
     /******************************************************************************* */
     getUser : async(id) => {
-        const user = await users.findOne({
+        let user = await users.findOne({
             where : {id},
             attributes : {exclude : "password"},
             include : [{
@@ -46,7 +46,8 @@ module.exports = {
             },
             {
                 as: "jobs",
-                model: jobs
+                model: jobs,
+                attributes : { exclude: "userId" }
             }
         ]
         });
